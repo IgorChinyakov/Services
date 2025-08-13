@@ -38,7 +38,7 @@ namespace Domain.Models
             => Parent == null ? (short)0 : (short)(Parent.Depth + 1);
 
         public string Path
-            => Parent == null ? Identifier.Value : $"{Parent.Path}/{Identifier.Value}";
+            => Parent == null ? Identifier.Value : $"{Parent.Path}.{Identifier.Value}";
 
         public int ChildrenCount
             => _departments.Count();
