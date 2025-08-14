@@ -7,6 +7,11 @@ namespace Domain.Entities
 {
     public class Position : Entity<PositionId>
     {
+        private readonly List<Department> _departments = [];
+
+        // ef core
+        private Position() { }
+
         public Name Name { get; private set; }
 
         public Description? Description { get; private set; }
@@ -16,6 +21,8 @@ namespace Domain.Entities
         public CreatedAt CreatedAt { get; private set; }
 
         public UpdatedAt UpdatedAt { get; private set; }
+
+        public IReadOnlyList<Department> Departments => _departments;
 
         public Position(
             Name name,
@@ -29,6 +36,7 @@ namespace Domain.Entities
             IsActive = isActive;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
+            Id = PositionId.New();
         }
     }
 }
