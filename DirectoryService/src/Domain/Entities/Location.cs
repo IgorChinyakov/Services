@@ -22,7 +22,7 @@ namespace Domain.Entities
 
         public Address Address { get; private set; }
 
-        public ValueObjects.Location.TimeZone TimeZone { get; private set; }
+        public TimeZoneVO TimeZone { get; private set; }
 
         public IReadOnlyList<Department> Departments => _departments;
 
@@ -32,7 +32,7 @@ namespace Domain.Entities
             CreatedAt createdAt,
             UpdatedAt updatedAt,
             Address address,
-            ValueObjects.Location.TimeZone timeZone)
+            TimeZoneVO timeZone)
         {
             Name = name;
             IsActive = isActive;
