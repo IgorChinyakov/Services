@@ -7,6 +7,10 @@ namespace Domain.Entities
 {
     public class Location : Entity<LocationId>
     {
+        private readonly List<Department> _departments = [];
+
+        // ef core
+        private Location() { }
 
         public Name Name { get; private set; }
 
@@ -18,18 +22,25 @@ namespace Domain.Entities
 
         public Address Address { get; private set; }
 
+        public TimeZoneVO TimeZone { get; private set; }
+
+        public IReadOnlyList<Department> Departments => _departments;
+
         public Location(
             Name name,
             IsActive isActive,
             CreatedAt createdAt,
             UpdatedAt updatedAt,
-            Address address)
+            Address address,
+            TimeZoneVO timeZone)
         {
             Name = name;
             IsActive = isActive;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
             Address = address;
+            TimeZone = timeZone;
+            Id = LocationId.New();
         }
     }
 }

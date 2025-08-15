@@ -1,10 +1,9 @@
 ﻿using CSharpFunctionalExtensions;
-using Domain.Entities;
 using Domain.ValueObjects.Department;
 using Domain.ValueObjects.Ids;
 using Domain.ValueObjects.Shared;
 
-namespace Domain.Models
+namespace Domain.Entities
 {
     public class Department : Entity<DepartmentId>
     {
@@ -13,6 +12,9 @@ namespace Domain.Models
         private readonly List<Position> _positions = [];
 
         private readonly List<Location> _locations = [];
+
+        // ef core
+        private Department() { }
 
         public Name Name { get; private set; }
 
@@ -55,6 +57,7 @@ namespace Domain.Models
             IsActive = isActive;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
+            Id = DepartmentId.New();
         }
     }
 }
