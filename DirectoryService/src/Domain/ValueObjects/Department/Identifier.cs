@@ -19,7 +19,7 @@ namespace Domain.ValueObjects.Department
                 value.Length < DepartmentConstants.IDENTIFIER_MIN_LENGTH ||
                 value.Length > DepartmentConstants.IDENTIFIER_MAX_LENGTH ||
                 value.All(c => char.IsLetter(c) && ((c > 'a' && c < 'z') || (c > 'A' && c < 'Z'))))
-                return Error.Create("invalid identifier");
+                return GeneralErrors.Validation(nameof(Identifier));
 
             return new Identifier(value);
         }

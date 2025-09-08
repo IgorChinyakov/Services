@@ -1,4 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
+using Domain.Shared;
+using Domain.ValueObjects.Location;
 
 namespace Domain.ValueObjects.Shared
 {
@@ -11,10 +13,10 @@ namespace Domain.ValueObjects.Shared
             Value = value;
         }
 
-        public static Result<UpdatedAt, string> Create(DateTime value)
+        public static Result<UpdatedAt, Error> Create(DateTime value)
         {
             if (value < DateTime.UtcNow)
-                return "invalid datetime";
+                return GeneralErrors.Validation(nameof(UpdatedAt));
 
             return new UpdatedAt(value);
         }

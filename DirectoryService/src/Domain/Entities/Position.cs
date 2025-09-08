@@ -20,22 +20,18 @@ namespace Domain.Entities
 
         public CreatedAt CreatedAt { get; private set; }
 
-        public UpdatedAt UpdatedAt { get; private set; }
+        public UpdatedAt? UpdatedAt { get; private set; }
 
         public IReadOnlyList<Department> Departments => _departments;
 
         public Position(
             Name name,
-            Description? description,
-            IsActive isActive,
-            CreatedAt createdAt,
-            UpdatedAt updatedAt)
+            Description? description)
         {
             Name = name;
             Description = description;
-            IsActive = isActive;
-            CreatedAt = createdAt;
-            UpdatedAt = updatedAt;
+            IsActive = IsActive.Create(true);
+            CreatedAt = CreatedAt.Create();
             Id = PositionId.New();
         }
     }

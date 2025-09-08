@@ -10,9 +10,51 @@ namespace Domain.Shared
     {
         public string Message { get; set; }
 
-        private Error(string message) => Message = message;
+        public string Code { get; set; }
 
-        public static Error Create(string message)
-            => new Error(message);
+        public string? PropertyName { get; set; }
+
+        public ErrorType ErrorType { get; set; }
+
+        public Error(
+            string message,
+            string code,
+            string? propertyName,
+            ErrorType errorType)
+        {
+            Message = message;
+            Code = code;
+            PropertyName = propertyName;
+            ErrorType = errorType;
+        }
+
+        public static Error Validation(string code, string message, string? propertyName = null)
+            => new Error(message, code, propertyName, ErrorType.Validation);
+
+        public static Error NotFound(string code, string message, string? propertyName = null)
+            => new Error(message, code, propertyName, ErrorType.NotFound);
+
+        public static Error Conflict(string code, string message, string? propertyName = null)
+            => new Error(code, message, propertyName, ErrorType.Conflict);
+
+        public static Error Unauthorized(string code, string message)
+            => new Error(code, message, null, ErrorType.Unauthorized);
+
+        public static Error Failure(string code, string message)
+            => new Error(code, message, null, ErrorType.Failure);
+
+        public static Error Failure(string code, string message, ErrorType errorType)
+            => new Error(code, message, null, ErrorType.Failure);
+
+        public Errors ToErrorsList() => new([this]);
+    }
+
+    public enum ErrorType
+    {
+        Validation,
+        NotFound,
+        Conflict,
+        Failure,
+        Unauthorized,
     }
 }

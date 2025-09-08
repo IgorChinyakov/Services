@@ -16,7 +16,7 @@ namespace Domain.ValueObjects.Location
         {
             if (string.IsNullOrWhiteSpace(value) ||
                 !TimeZoneInfo.TryFindSystemTimeZoneById(value, out var _))
-                return Error.Create("invalid timezone");
+                return GeneralErrors.Validation(nameof(TimeZoneVO));
 
             return new TimeZoneVO(value);
         }

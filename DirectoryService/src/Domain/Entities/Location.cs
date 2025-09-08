@@ -18,7 +18,7 @@ namespace Domain.Entities
 
         public CreatedAt CreatedAt { get; private set; }
 
-        public UpdatedAt UpdatedAt { get; private set; }
+        public UpdatedAt? UpdatedAt { get; private set; }
 
         public Address Address { get; private set; }
 
@@ -28,16 +28,12 @@ namespace Domain.Entities
 
         public Location(
             Name name,
-            IsActive isActive,
-            CreatedAt createdAt,
-            UpdatedAt updatedAt,
             Address address,
             TimeZoneVO timeZone)
         {
             Name = name;
-            IsActive = isActive;
-            CreatedAt = createdAt;
-            UpdatedAt = updatedAt;
+            IsActive = IsActive.Create(true);
+            CreatedAt = CreatedAt.Create();
             Address = address;
             TimeZone = timeZone;
             Id = LocationId.New();

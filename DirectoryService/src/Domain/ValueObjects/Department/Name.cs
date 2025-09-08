@@ -18,7 +18,7 @@ namespace Domain.ValueObjects.Department
             if (string.IsNullOrWhiteSpace(value) ||
                 value.Length < DepartmentConstants.NAME_MIN_LENGTH ||
                 value.Length > DepartmentConstants.NAME_MAX_LENGTH)
-                return Error.Create("invalid name");
+                return GeneralErrors.Validation(nameof(Name));
 
             return new Name(value);
         }

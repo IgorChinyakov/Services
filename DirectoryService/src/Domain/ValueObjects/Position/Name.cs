@@ -18,7 +18,7 @@ namespace Domain.ValueObjects.Position
             if (string.IsNullOrWhiteSpace(value) ||
                 value.Length < PositionConstants.NAME_MIN_LENGTH ||
                 value.Length > PositionConstants.NAME_MAX_LENGTH)
-                return Error.Create("invalid name");
+                return GeneralErrors.Validation(nameof(Name));
 
             return new Name(value);
         }

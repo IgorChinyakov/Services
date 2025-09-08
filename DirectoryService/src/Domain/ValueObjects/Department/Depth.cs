@@ -15,7 +15,7 @@ namespace Domain.ValueObjects.Department
         public static Result<Depth, Error> Create(short value)
         {
             if (value < 0)
-                return Error.Create("invalid depth");
+                return GeneralErrors.Validation(nameof(Depth));
 
             return new Depth(value);
         }
