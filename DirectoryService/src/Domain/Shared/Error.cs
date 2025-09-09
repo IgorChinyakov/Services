@@ -44,7 +44,7 @@ namespace Domain.Shared
             => new Error(code, message, null, ErrorType.Failure);
 
         public static Error Failure(string code, string message, ErrorType errorType)
-            => new Error(code, message, null, ErrorType.Failure);
+            => new Error(code, message, null, errorType);
 
         public Errors ToErrorsList() => new([this]);
     }

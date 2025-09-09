@@ -1,4 +1,6 @@
-﻿using Domain.Entities;
+﻿using CSharpFunctionalExtensions;
+using Domain.Entities;
+using Domain.Shared;
 
 namespace Application.Database
 {
@@ -6,6 +8,6 @@ namespace Application.Database
     {
         Task<Guid> Add(Location location);
 
-        Task SaveChanges();
+        Task<UnitResult<Error>> SaveChanges();
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Application.Database;
+using CSharpFunctionalExtensions;
 using Domain.Entities;
+using Domain.Shared;
 using Infrastructure.DBContexts;
 
 namespace Infrastructure.Repositories
@@ -20,9 +22,18 @@ namespace Infrastructure.Repositories
             return location.Id.Value;
         }
 
-        public async Task SaveChanges()
+        public async Task<UnitResult<Error>> SaveChanges()
         {
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+
+                return Result.Success<Error>();
+            }
+            catch (Exception ex)
+            {
+                return Error.Failure("internal.error", ex.Message);
+            }
         }
     }
 }
