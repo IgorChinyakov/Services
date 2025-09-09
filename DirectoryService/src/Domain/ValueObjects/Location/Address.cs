@@ -53,16 +53,16 @@ namespace Domain.ValueObjects.Location
             string apartment)
         {
             if (string.IsNullOrWhiteSpace(country))
-                yield return Error.Create("invalid country");
+                yield return GeneralErrors.Validation(nameof(Country));
 
             if (string.IsNullOrWhiteSpace(city))
-                yield return Error.Create("invalid city");
+                yield return GeneralErrors.Validation(nameof(City));
 
             if (string.IsNullOrWhiteSpace(street))
-                yield return Error.Create("invalid street");
+                yield return GeneralErrors.Validation(nameof(Street));
 
             if (string.IsNullOrWhiteSpace(apartment))
-                yield return Error.Create("invalid apartment");
+                yield return GeneralErrors.Validation(nameof(Apartment));
         }
     }
 }

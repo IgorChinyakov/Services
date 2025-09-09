@@ -17,7 +17,7 @@ namespace Domain.ValueObjects.Position
         {
             if (string.IsNullOrWhiteSpace(value) ||
                 value.Length > PositionConstants.DESCRIPTION_MAX_LENGTH)
-                return Error.Create("invalid description");
+                return GeneralErrors.Validation(nameof(Description));
 
             return new Description(value);
         }

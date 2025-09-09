@@ -41,7 +41,7 @@ namespace Infrastructure.Configurations
                     .IsRequired();
             });
 
-            builder.ComplexProperty(d => d.UpdatedAt, ub =>
+            builder.OwnsOne(d => d.UpdatedAt, ub =>
             {
                 ub.Property(i => i.Value)
                     .HasColumnName("updated_at")

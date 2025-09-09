@@ -28,7 +28,7 @@ namespace Domain.Entities
 
         public CreatedAt CreatedAt { get; private set; }
 
-        public UpdatedAt UpdatedAt { get; private set; }
+        public UpdatedAt? UpdatedAt { get; private set; }
 
         public IReadOnlyList<Department> Departments => _departments;
 
@@ -48,15 +48,12 @@ namespace Domain.Entities
         public Department(
             Identifier identifier,
             Name name,
-            IsActive isActive,
-            CreatedAt createdAt,
-            UpdatedAt updatedAt)
+            CreatedAt createdAt)
         {
             Identifier = identifier;
             Name = name;
-            IsActive = isActive;
-            CreatedAt = createdAt;
-            UpdatedAt = updatedAt;
+            IsActive = IsActive.Create(true);
+            CreatedAt = CreatedAt.Create();
             Id = DepartmentId.New();
         }
     }

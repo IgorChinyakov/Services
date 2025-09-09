@@ -1,5 +1,7 @@
-﻿using Infrastructure.DBContexts;
+﻿using Application.Database;
+using Infrastructure.DBContexts;
 using Infrastructure.Options;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +15,7 @@ namespace Infrastructure
             IConfiguration configuration)
         {
             services.AddDatabase(configuration);
+            services.AddRepositories();
 
             return services;
         }
@@ -27,6 +30,14 @@ namespace Infrastructure
 
                 return new ApplicationDbContext(optionsBuilder.Options);
             });
+
+            return services;
+        }
+
+        private static IServiceCollection AddRepositories(
+           this IServiceCollection services)
+        {
+            services.AddScoped<ILocationsRepository, LocationsRepository>();
 
             return services;
         }
