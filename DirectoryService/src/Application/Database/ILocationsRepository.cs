@@ -8,6 +8,6 @@ namespace Application.Database
     {
         Task<Guid> Add(Location location);
 
-        Task<UnitResult<Error>> SaveChanges();
+        Task SaveChanges(CancellationToken cancellationToken = default);
     }
 }

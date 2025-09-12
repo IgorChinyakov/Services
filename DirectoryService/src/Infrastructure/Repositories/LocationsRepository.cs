@@ -22,18 +22,7 @@ namespace Infrastructure.Repositories
             return location.Id.Value;
         }
 
-        public async Task<UnitResult<Error>> SaveChanges()
-        {
-            try
-            {
-                await _context.SaveChangesAsync();
-
-                return Result.Success<Error>();
-            }
-            catch (Exception ex)
-            {
-                return Error.Failure("internal.error", ex.Message);
-            }
-        }
+        public async Task SaveChanges(CancellationToken cancellationToken = default)
+            => await _context.SaveChangesAsync(cancellationToken);
     }
 }
