@@ -20,7 +20,7 @@ namespace Presentation.Controllers
                 request.Name,
                 request.Address,
                 request.TimeZone);
-            var result = await handler.Handle(command);
+            var result = await handler.Handle(command, cancellationToken);
             if (result.IsFailure)
                 return result.Error.ToResponse();
 

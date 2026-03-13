@@ -1,7 +1,6 @@
 services:
   postgres:
     image: postgres:latest
-    container_name: database
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -11,6 +10,17 @@ services:
       - "5430:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data/pgdata
+  seq:
+    image: datalust/seq:latest
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5348:5341" # Seq UI and API
+      - "80:80"   # Optional: For HTTP ingestion (e.g., Serilog HTTP)
+    volumes:
+      - seq_data:/data # Persistent storage for Seq data
+    
 
 volumes:
     postgres-data:
+    seq_data:
